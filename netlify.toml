@@ -1,0 +1,9 @@
+[build]
+  publish = "frontend/build"
+  command = "cd frontend && npm install && npm run build"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://mern-workout-tracker-backend.onrender.com/api/:splat"
+  status = 200
+  force = true
