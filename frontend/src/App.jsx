@@ -7,7 +7,7 @@ function App() {
   const { request, loading, error } = useApi();
   const [workouts, setWorkouts] = useState([]);
 
-  // Load workouts on start
+  // Move loadWorkouts outside useEffect so the Retry button can use it
   const loadWorkouts = async () => {
     try {
       const data = await request("/api/workouts");
@@ -17,9 +17,10 @@ function App() {
     }
   };
 
+  // Load workouts when the app starts
   useEffect(() => {
     loadWorkouts();
-  }, []);
+  }, []); // empty array = run only once on mount
 
   // Add new workout
   const addWorkout = async (e) => {
@@ -44,7 +45,7 @@ function App() {
   // Delete workout
   const deleteWorkout = async (id) => {
     try {
-      await request(`/api/workouts/${id}`, { method: "DELETE" });
+      await request('/api/workouts/${id}', { method: "DELETE" });
       setWorkouts(workouts.filter((w) => w._id !== id));
     } catch (err) {
       console.error("Delete failed:", err);
@@ -62,7 +63,7 @@ function App() {
 
   const saveEdit = async () => {
     try {
-      const updated = await request(`/api/workouts/${editingId}`, {
+      const updated = await request('/api/workouts/${editingId}', {
         method: "PUT",
         body: JSON.stringify(editForm),
       });
