@@ -20,7 +20,7 @@ function App() {
   // Load workouts when the app starts
   useEffect(() => {
     loadWorkouts();
-  }, [loadWorkouts]); // empty array = run only once on mount
+  }, []); // empty array = run only once on mount
 
   // Add new workout
   const addWorkout = async (e) => {
