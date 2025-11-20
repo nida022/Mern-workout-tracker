@@ -58,32 +58,43 @@ h1 {
   color: #222;
 }
 
+
 /* --------------------------------------------------------------
-   Add section
+   Add section – now perfectly matches the workout cards
    -------------------------------------------------------------- */
 .add-section {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;  /* title | kg | reps | button */
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
 }
-.add-section input {
-  flex: 1;
-  padding: 0.6rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+
+.add-section input[name="load"],
+.add-section input[name="reps"] {
+  width: 80px;
+  text-align: center;
 }
-.add-section input[type="number"] {
-  flex: 0 0 80px;
+
+.add-section input[name="title"] {
+  font-weight: bold;
+  font-size: 1.1rem;
 }
+
 .add-section button {
-  padding: 0 1rem;
+  padding: 8px 16px;
   background: #28a745;
-  color: #fff;
+  color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
 }
+
 .add-section button:hover {
   background: #218838;
 }

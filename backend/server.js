@@ -23,9 +23,21 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     const port = process.env.PORT || 4000;
     app.listen(port, () => {
-      console.log('Connected to DB & listening on port ${port}');
+      console.log('Server running on port ${port}');
     });
   })
   .catch((error) => {
-    console.log('DB Connection Error:', error);
+    console.log(`DB Connection Error:`, error);
   });
+  // Serve static assets (React build) in production
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path');
+
+  // Serve the static files from the React app build
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+  // Catch all routes and send back index.html
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+  });
+}

@@ -20,7 +20,7 @@ function App() {
   // Load workouts when the app starts
   useEffect(() => {
     loadWorkouts();
-  }, []); // empty array = run only once on mount
+  }, [loadWorkouts]); // empty array = run only once on mount
 
   // Add new workout
   const addWorkout = async (e) => {
@@ -28,6 +28,7 @@ function App() {
     const form = e.target;
     const title = form.title.value;
     const load = form.load.value;
+
     const reps = form.reps.value;
 
     try {
@@ -45,7 +46,7 @@ function App() {
   // Delete workout
   const deleteWorkout = async (id) => {
     try {
-      await request('/api/workouts/${id}', { method: "DELETE" });
+      await request(`/api/workouts/${id}`, { method: "DELETE" });
       setWorkouts(workouts.filter((w) => w._id !== id));
     } catch (err) {
       console.error("Delete failed:", err);
@@ -63,7 +64,7 @@ function App() {
 
   const saveEdit = async () => {
     try {
-      const updated = await request('/api/workouts/${editingId}', {
+      const updated = await request(`/api/workouts/${editingId}`, {
         method: "PUT",
         body: JSON.stringify(editForm),
       });

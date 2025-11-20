@@ -16,8 +16,8 @@ export default function useApi() {
 
       if (!res.ok) {
         const text = await res.text();
-        throw new Error("Error " + res.status + ": " + (text || res.statusText));
-        
+        throw new Error(`Error ${res.status}: ${text || res.statusText}`);
+       
       }
 
       return await res.json();
