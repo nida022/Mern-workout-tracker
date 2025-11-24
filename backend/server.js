@@ -16,8 +16,8 @@ app.use((req, res, next) => {
 });
 
 // Routes
-const workoutRoutes = require('./routes/workoutRoutes')  // or './routes/workouts'
-app.use('/api/workouts', workoutRoutes)                 // ← MUST BE EXACTLY THIS
+
+app.use('/api/workouts', workoutRoutes)                
 
 
 // Connect to DB
