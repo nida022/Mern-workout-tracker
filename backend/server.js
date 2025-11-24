@@ -16,7 +16,9 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use('/api/workouts', workoutRoutes);
+const workoutRoutes = require('./routes/workoutRoutes')  // or './routes/workouts'
+app.use('/api/workouts', workoutRoutes)                 // ← MUST BE EXACTLY THIS
+
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI)
