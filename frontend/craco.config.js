@@ -1,13 +1,6 @@
 module.exports = {
-  webpack: {
-    configure: (webpackConfig) => {
-      // Ensure minimizers exist
-      if (webpackConfig.optimization && webpackConfig.optimization.minimizer) {
-        webpackConfig.optimization.minimizer = webpackConfig.optimization.minimizer.filter(
-          (minimizer) => minimizer.constructor.name !== 'CssMinimizerPlugin'
-        );
-      }
-      return webpackConfig;
-    },
+  devServer: {
+    allowedHosts: "all",   // this is the correct way now
+    // or allowedHosts: ["localhost", ".ngrok.io"] if you need specific ones
   },
 };
