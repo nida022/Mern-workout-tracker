@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {
-    "dev": "cd backend && nodemon server.js",
-    "start": "cd backend && node server.js"
-  },
+ 
+    "scripts": {
+  "start": "node backend/server.js",
+  "dev": "nodemon backend/server.js",
+  "server": "nodemon backend/server.js",
+  "client": "npm start --prefix frontend",
+  "both": "concurrently \"npm run server\" \"npm run client\""
+    },
+    
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
